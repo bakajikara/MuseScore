@@ -67,11 +67,6 @@ jobs:
         fi
 
         DO_BUILD='true'
-        if [ "$BUILD_MODE" == "nightly_build" ]; then 
-          if [ "${{ github.repository }}" != "musescore/MuseScore" ]; then 
-            DO_BUILD='false'
-          fi
-        fi
 
         DO_UPDATE_TS='false'
         if [[ "$BUILD_MODE" == "testing_build" || "$BUILD_MODE" == "stable_build" ]]; then 
