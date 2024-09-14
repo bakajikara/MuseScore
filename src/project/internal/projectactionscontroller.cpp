@@ -28,6 +28,7 @@
 #include <QUrl>
 #include <QUrlQuery>
 #include <QTimer>
+#include <QFileDialog>
 
 #include "async/async.h"
 #include "defer.h"
@@ -817,7 +818,27 @@ void ProjectActionsController::publish()
         return;
     }
 
-    AudioFile audio = exportMp3(project->masterNotation()->notation());
+    AudioFile audio;
+
+    // QFileDialogを使って既存のMP3ファイルを選択
+    QString fileName = QFileDialog::getOpenFileName(nullptr, QObject::tr("Select MP3 File"), "", QObject::tr("MP3 Files (*.mp3)"));
+    if (fileName.isEmpty()) {
+        // ファイルが選択されなかった場合はエクスポート
+        audio = exportMp3(project->masterNotation()->notation());
+    } else {
+        // 選択されたファイルを読み込む
+        QFile* file = new QFile(fileName);
+        if (!file->open(QIODevice::ReadOnly)) {
+            LOGE() << "Could not open the selected MP3 file";
+            delete file;
+            return;
+        }
+
+        audio.format = "mp3";
+        audio.device = file;
+        audio.device->seek(0);
+    }
+
     if (audio.isValid()) {
         uploadProject(info.val, audio, /*openEditUrl=*/ true, /*publishMode=*/ true);
     }
