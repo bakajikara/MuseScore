@@ -564,7 +564,8 @@ MenuItemList AppMenuModel::makeTextItems()
         makeMenuItem("nashville-number-text"),
         makeMenuItem("lyrics"),
         makeMenuItem("figured-bass"),
-        makeMenuItem("tempo")
+        makeMenuItem("tempo"),
+        makeMenuItem("dynamics")
     };
 
     return items;
