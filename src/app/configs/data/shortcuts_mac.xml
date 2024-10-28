@@ -955,6 +955,10 @@
     <seq>Enter</seq>
   </SC>
   <SC>
+    <key>backspace-to-prev-lyric</key>
+    <seq>Backspace</seq>
+  </SC>
+  <SC>
     <key>toggle-visible</key>
     <seq>V</seq>
     </SC>

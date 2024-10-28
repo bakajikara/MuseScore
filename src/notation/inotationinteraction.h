@@ -251,6 +251,7 @@ public:
 
     virtual void addMelisma() = 0;
     virtual void addLyricsVerse() = 0;
+    virtual void backspaceToPrevLyric() = 0;
 
     virtual muse::Ret canAddGuitarBend() const = 0;
     virtual void addGuitarBend(GuitarBendType bendType) = 0;

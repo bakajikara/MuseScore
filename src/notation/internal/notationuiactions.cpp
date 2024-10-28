@@ -1731,6 +1731,12 @@ const UiActionList NotationUiActions::m_actions = {
              TranslatableString("action", "Add lyric verse"),
              TranslatableString("action", "Add lyric verse")
              ),
+    UiAction("backspace-to-prev-lyric",
+             mu::context::UiCtxNotationOpened,
+             mu::context::CTX_NOTATION_TEXT_EDITING,
+             TranslatableString("action", "Backspace to previous lyric"),
+             TranslatableString("action", "Lyrics: backspace to previous")
+             ),
     UiAction("text-b",
              mu::context::UiCtxNotationOpened,
              mu::context::CTX_NOTATION_OPENED,

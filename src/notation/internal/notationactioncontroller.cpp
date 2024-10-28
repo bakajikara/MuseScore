@@ -152,6 +152,7 @@ void NotationActionController::init()
 
     registerAction("add-melisma", &Interaction::addMelisma, PlayMode::NoPlay, &Controller::isEditingLyrics);
     registerAction("add-lyric-verse", &Interaction::addLyricsVerse, PlayMode::NoPlay, &Controller::isEditingLyrics);
+    registerAction("backspace-to-prev-lyric", &Interaction::backspaceToPrevLyric, PlayMode::NoPlay, &Controller::isEditingLyrics);
 
     registerAction("flat2", [this]() { toggleAccidental(AccidentalType::FLAT2); });
     registerAction("flat", [this]() { toggleAccidental(AccidentalType::FLAT); });

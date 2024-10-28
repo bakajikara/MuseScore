@@ -5895,6 +5895,116 @@ void NotationInteraction::addMelisma()
     toLyrics->selectAll(toLyrics->cursor());
 }
 
+void NotationInteraction::backspaceToPrevLyric()
+{
+    if (!m_editData.element || !m_editData.element->isLyrics()) {
+        LOGW("backspaceToPrevLyric called with invalid current element");
+        return;
+    }
+    mu::engraving::Lyrics* lyrics = toLyrics(m_editData.element);
+    track_idx_t track = lyrics->track();
+    mu::engraving::Segment* segment = lyrics->segment();
+    int verse = lyrics->no();
+    mu::engraving::PlacementV placement = lyrics->placement();
+    mu::engraving::PropertyFlags pFlags = lyrics->propertyFlags(mu::engraving::Pid::PLACEMENT);
+    mu::engraving::FontStyle fStyle = lyrics->fontStyle();
+    mu::engraving::PropertyFlags fFlags = lyrics->propertyFlags(mu::engraving::Pid::FONT_STYLE);
+
+    // search prev chord
+    mu::engraving::Segment* prevSegment = segment;
+    while ((prevSegment = prevSegment->prev1(mu::engraving::SegmentType::ChordRest))) {
+        EngravingItem* el = prevSegment->element(track);
+        if (el && el->isChord()) {
+            break;
+        }
+    }
+
+    if (prevSegment == 0) {
+        return;
+    }
+
+    // look for the lyrics we are moving to
+    ChordRest* cr = toChordRest(prevSegment->element(track));
+    if (!cr) {
+        LOGD("no next lyrics list: %s", prevSegment->element(track)->typeName());
+        return;
+    }
+    mu::engraving::Lyrics* toLyrics = cr->lyrics(verse, placement);
+
+    // look for the lyrics before current lyrics
+    // to handle syllabic style or melisma
+    mu::engraving::Lyrics* fromLyrics = 0;
+    LyricsSyllabic fromSyllabic = mu::engraving::LyricsSyllabic::SINGLE;
+    segment = segment->prev1(mu::engraving::SegmentType::ChordRest);
+    Fraction endTick = segment->tick(); // a previous melisma cannot extend beyond this point
+    while (segment) {
+        ChordRest* cr = toChordRest(segment->element(track));
+        if (cr) {
+            fromLyrics = cr->lyrics(verse, placement);
+            if (fromLyrics) {
+                fromSyllabic = fromLyrics->syllabic();
+                if (segment->tick() + fromLyrics->ticks() >= endTick) {
+                    fromLyrics->undoChangeProperty(mu::engraving::Pid::LYRIC_TICKS, endTick - segment->tick());
+                }
+                break;
+            }
+        }
+        segment = segment->prev1(mu::engraving::SegmentType::ChordRest);
+    }
+
+    endEditText();
+
+    bool newLyrics = false;
+    if (!toLyrics) {
+        toLyrics = Factory::createLyrics(cr);
+        toLyrics->setTrack(track);
+        cr = toChordRest(prevSegment->element(track));
+        toLyrics->setParent(cr);
+
+        toLyrics->setNo(verse);
+        const mu::engraving::TextStyleType styleType(toLyrics->isEven() ? TextStyleType::LYRICS_EVEN : TextStyleType::LYRICS_ODD);
+        toLyrics->setTextStyleType(styleType);
+
+        toLyrics->setPlacement(placement);
+        toLyrics->setPropertyFlags(mu::engraving::Pid::PLACEMENT, pFlags);
+        switch (fromSyllabic) {
+        case mu::engraving::LyricsSyllabic::BEGIN:
+        case mu::engraving::LyricsSyllabic::MIDDLE:
+            fromLyrics->undoChangeProperty(mu::engraving::Pid::SYLLABIC, int(fromSyllabic));
+            toLyrics->setSyllabic(mu::engraving::LyricsSyllabic::END);
+            break;
+        default:
+            toLyrics->setSyllabic(mu::engraving::LyricsSyllabic::SINGLE);
+            break;
+        }
+        toLyrics->setFontStyle(fStyle);
+        toLyrics->setPropertyFlags(mu::engraving::Pid::FONT_STYLE, fFlags);
+        newLyrics = true;
+    }
+
+    size_t toLyricSize = toLyrics->plainText().size();
+
+    score()->startCmd();
+
+    toLyrics->setXmlText(toLyrics->xmlText() + lyrics->xmlText());
+    score()->cmdDeleteSelection();
+
+    if (newLyrics) {
+        score()->undoAddElement(toLyrics);
+    }
+    score()->endCmd();
+    score()->select(toLyrics, SelectType::SINGLE, 0);
+    score()->setLayoutAll();
+
+    startEditText(toLyrics, PointF());
+
+    mu::engraving::TextCursor* cursor = toLyrics->cursor();
+    cursor->movePosition(mu::engraving::TextCursor::MoveOperation::Start, mu::engraving::TextCursor::MoveMode::MoveAnchor);
+    cursor->movePosition(mu::engraving::TextCursor::MoveOperation::Right, mu::engraving::TextCursor::MoveMode::MoveAnchor, toLyricSize);
+
+    showItem(toLyrics);
+}
+
 //! NOTE: Copied from ScoreView::lyricsReturn
 void NotationInteraction::addLyricsVerse()
 {
