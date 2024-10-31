@@ -37,6 +37,7 @@ set(MODULE_BIG_QRC
     ${CMAKE_CURRENT_LIST_DIR}/data/fonts/fonts_Petaluma.qrc
     ${CMAKE_CURRENT_LIST_DIR}/data/fonts/fonts_FinaleMaestro.qrc
     ${CMAKE_CURRENT_LIST_DIR}/data/fonts/fonts_FinaleBroadway.qrc
+    ${CMAKE_CURRENT_LIST_DIR}/data/fonts/fonts_ChaconneEx.qrc
     ${CMAKE_CURRENT_LIST_DIR}/data/fonts/fonts_Tabulature.qrc
     )
 

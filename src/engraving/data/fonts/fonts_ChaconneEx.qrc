@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="fonts/chaconneex/metadata.json">../../../../fonts/chaconneex/ChaconneEx.json</file>
+        <file alias="fonts/chaconneex/ChaconneEx.otf">../../../../fonts/chaconneex/ChaconneEx.otf</file>
+        <file alias="fonts/chaconneex/ChaconneExText.otf">../../../../fonts/chaconneex/ChaconneExText.otf</file>
+	    </qresource>
+</RCC>

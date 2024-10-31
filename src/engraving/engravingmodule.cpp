@@ -92,6 +92,7 @@ static void engraving_init_qrc()
     Q_INIT_RESOURCE(fonts_Petaluma);
     Q_INIT_RESOURCE(fonts_FinaleMaestro);
     Q_INIT_RESOURCE(fonts_FinaleBroadway);
+    Q_INIT_RESOURCE(fonts_ChaconneEx);
     Q_INIT_RESOURCE(fonts_Tabulature);
 #endif
 }
@@ -200,6 +201,8 @@ void EngravingModule::onInit(const IApplication::RunMode& mode)
         fdb->addFont(FontDataKey(u"Finale Maestro Text"), ":/fonts/finalemaestro/FinaleMaestroText.otf");
         addMusicFont("Finale Broadway", FontDataKey(u"Finale Broadway"), ":/fonts/finalebroadway/FinaleBroadway.otf");
         fdb->addFont(FontDataKey(u"Finale Broadway Text"), ":/fonts/finalebroadway/FinaleBroadwayText.otf");
+        addMusicFont("Chaconne Ex", FontDataKey(u"Chaconne Ex"), ":/fonts/chaconneex/ChaconneEx.otf");
+        fdb->addFont(FontDataKey(u"Chaconne Ex Text"), ":/fonts/chaconneex/ChaconneExText.otf");
 
         // Tabulature
         fdb->addFont(FontDataKey(u"FreeSerif"), ":/fonts/FreeSerif.ttf");
@@ -232,6 +235,7 @@ void EngravingModule::onInit(const IApplication::RunMode& mode)
         fdb->insertSubstitution(u"Petaluma Text",  u"MuseJazz Text");
         fdb->insertSubstitution(u"Finale Maestro Text", u"Leland Text");
         fdb->insertSubstitution(u"Finale Broadway Text", u"MuseJazz Text");
+        fdb->insertSubstitution(u"Chaconne Ex Text", u"Leland Text");
         fdb->insertSubstitution(u"ScoreFont",      u"Leland Text");// alias for current Musical Text Font
 
         // Symbols

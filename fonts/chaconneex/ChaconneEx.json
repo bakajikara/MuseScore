@@ -1,0 +1,1135 @@
+{
+    "fontName": "Chaconne Ex",
+    "fontVersion": 1.000,
+    "engravingDefaults": {
+        "textFontFamily": "serif",
+        "staffLineThickness": 0.094,
+        "stemThickness": 0.104,
+        "beamThickness": 0.5,
+        "beamSpacing": 0.25,
+        "legerLineThickness": 0.142,
+        "legerLineExtension": 0.333,
+        "slurEndpointThickness": 0.042,
+        "slurMidpointThickness": 0.25,
+        "tieEndpointThickness": 0.042,
+        "tieMidpointThickness": 0.25,
+        "thinBarlineThickness": 0.142,
+        "thickBarlineThickness": 0.5,
+        "dashedBarlineThickness": 0.142,
+        "dashedBarlineDashLength": 0.5,
+        "dashedBarlineGapLength": 0.375,
+        "barlineSeparation": 0.5,
+        "thinThickBarlineSeparation": 0.333,
+        "repeatBarlineDotSeparation": 0.333,
+        "hairpinThickness": 0.1,
+        "octaveLineThickness": 0.1,
+        "pedalLineThickness": 0.096,
+        "repeatEndingLineThickness": 0.125,
+        "arrowShaftThickness": 0.146,
+        "lyricLineThickness": 0.083,
+        "textEnclosureThickness": 0.167,
+        "tupletBracketThickness": 0.1,
+        "hBarThickness": 0.5
+    },
+    "glyphsWithAnchors": {
+        "noteheadHalf": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.284,
+                0.185
+            ]
+        },
+        "noteheadBlack": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.268,
+                0.185
+            ]
+        },
+        "noteheadNull": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.268,
+                0.185
+            ]
+        },
+        "noteheadXBlack": {
+            "stemDownNW": [
+                0.484,
+                -0.008
+            ],
+            "stemUpSE": [
+                0.588,
+                0.008
+            ]
+        },
+        "noteheadXOrnate": {
+            "stemDownNW": [
+                0.452,
+                -0.056
+            ],
+            "stemUpSE": [
+                0.556,
+                0.056
+            ]
+        },
+        "noteheadXOrnateEllipse": {
+            "stemDownNW": [
+                0.652,
+                -0.708
+            ],
+            "stemUpSE": [
+                0.756,
+                0.708
+            ]
+        },
+        "noteheadCircleX": {
+            "stemDownNW": [
+                0.652,
+                -0.708
+            ],
+            "stemUpSE": [
+                0.756,
+                0.708
+            ]
+        },
+        "noteheadSquareWhite": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.168,
+                0.5
+            ]
+        },
+        "noteheadSquareBlack": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.168,
+                0.5
+            ]
+        },
+        "noteheadTriangleUpWhite": {
+            "stemDownNW": [
+                0.572,
+                -0.5
+            ],
+            "stemUpSE": [
+                0.676,
+                0.332
+            ]
+        },
+        "noteheadTriangleUpBlack": {
+            "stemDownNW": [
+                0.572,
+                -0.5
+            ],
+            "stemUpSE": [
+                0.676,
+                0.332
+            ]
+        },
+        "noteheadTriangleDownWhite": {
+            "stemDownNW": [
+                0.572,
+                -0.332
+            ],
+            "stemUpSE": [
+                0.676,
+                0.5
+            ]
+        },
+        "noteheadTriangleDownBlack": {
+            "stemDownNW": [
+                0.572,
+                -0.332
+            ],
+            "stemUpSE": [
+                0.676,
+                0.5
+            ]
+        },
+        "noteheadTriangleLeftWhite": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.248,
+                -0.5
+            ]
+        },
+        "noteheadTriangleLeftBlack": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.248,
+                -0.5
+            ]
+        },
+        "noteheadTriangleRightWhite": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.248,
+                0.316
+            ]
+        },
+        "noteheadTriangleRightBlack": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.248,
+                0.316
+            ]
+        },
+        "noteheadTriangleUpRightWhite": {
+            "stemDownNW": [
+                0,
+                0.5
+            ],
+            "stemUpSE": [
+                1.248,
+                0.5
+            ]
+        },
+        "noteheadTriangleUpRightBlack": {
+            "stemDownNW": [
+                0,
+                0.5
+            ],
+            "stemUpSE": [
+                1.248,
+                0.5
+            ]
+        },
+        "noteheadMoonWhite": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.168,
+                0.5
+            ]
+        },
+        "noteheadMoonBlack": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.168,
+                0.5
+            ]
+        },
+        "noteheadTriangleRoundDownWhite": {
+            "stemDownNW": [
+                0,
+                0.156
+            ],
+            "stemUpSE": [
+                1.248,
+                0.156
+            ]
+        },
+        "noteheadTriangleRoundDownBlack": {
+            "stemDownNW": [
+                0,
+                0.156
+            ],
+            "stemUpSE": [
+                1.248,
+                0.156
+            ]
+        },
+        "noteheadSlashedBlack1": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.268,
+                0.185
+            ]
+        },
+        "noteheadSlashedBlack2": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.268,
+                0.185
+            ]
+        },
+        "noteheadSlashedHalf1": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.284,
+                0.185
+            ]
+        },
+        "noteheadSlashedHalf2": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.28,
+                0.185
+            ]
+        },
+        "noteheadDiamondHalf": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondHalfWide": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondBlack": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondBlackWide": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondWhite": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondWhiteWide": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondHalfOld": {
+            "stemDownNW": [
+                0.7,
+                -0.536
+            ],
+            "stemUpSE": [
+                0.804,
+                0.536
+            ]
+        },
+        "noteheadDiamondBlackOld": {
+            "stemDownNW": [
+                0.7,
+                -0.432
+            ],
+            "stemUpSE": [
+                0.804,
+                0.432
+            ]
+        },
+        "noteheadDiamondHalfFilled": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "noteheadDiamondX": {
+            "stemDownNW": [
+                0.7,
+                -0.536
+            ],
+            "stemUpSE": [
+                0.804,
+                0.536
+            ]
+        },
+        "noteheadCircledBlackLarge": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.272,
+                0.185
+            ]
+        },
+        "noteheadCircledHalfLarge": {
+            "stemDownNW": [
+                0,
+                -0.185
+            ],
+            "stemUpSE": [
+                1.28,
+                0.185
+            ]
+        },
+        "noteheadSlashVerticalEnds": {
+            "stemDownNW": [
+                0,
+                -0.596
+            ],
+            "stemUpSE": [
+                1.168,
+                0.596
+            ]
+        },
+        "noteheadSlashHorizontalEnds": {
+            "stemDownNW": [
+                0,
+                -1
+            ],
+            "stemUpSE": [
+                1.796,
+                1
+            ]
+        },
+        "noteheadSlashWhiteWhole": {
+            "stemDownNW": [
+                0,
+                -1
+            ],
+            "stemUpSE": [
+                2.648,
+                1
+            ]
+        },
+        "noteheadSlashWhiteHalf": {
+            "stemDownNW": [
+                0,
+                -1
+            ],
+            "stemUpSE": [
+                2.38,
+                1
+            ]
+        },
+        "noteheadSlashX": {
+            "stemDownNW": [
+                0.844,
+                -0.228
+            ],
+            "stemUpSE": [
+                0.948,
+                0.228
+            ]
+        },
+        "noteheadLargeArrowUpHalf": {
+            "stemDownNW": [
+                0.572,
+                -0.508
+            ],
+            "stemUpSE": [
+                0.676,
+                0.728
+            ]
+        },
+        "noteheadLargeArrowUpBlack": {
+            "stemDownNW": [
+                0.572,
+                -0.508
+            ],
+            "stemUpSE": [
+                0.676,
+                0.728
+            ]
+        },
+        "noteheadLargeArrowDownHalf": {
+            "stemDownNW": [
+                0.572,
+                -0.728
+            ],
+            "stemUpSE": [
+                0.676,
+                0.508
+            ]
+        },
+        "noteheadLargeArrowDownBlack": {
+            "stemDownNW": [
+                0.572,
+                -0.728
+            ],
+            "stemUpSE": [
+                0.676,
+                0.508
+            ]
+        },
+        "noteheadClusterSquareWhite": {
+            "stemDownNW": [
+                0,
+                -1.5
+            ],
+            "stemUpSE": [
+                1.2,
+                1.5
+            ]
+        },
+        "noteheadClusterSquareBlack": {
+            "stemDownNW": [
+                0,
+                -1.5
+            ],
+            "stemUpSE": [
+                1.2,
+                1.5
+            ]
+        },
+        "noteheadRectangularClusterBlackTop": {
+            "stemDownNW": [
+                0,
+                -0.8
+            ],
+            "stemUpSE": [
+                1.2,
+                0.5
+            ]
+        },
+        "noteheadRectangularClusterBlackBottom": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.2,
+                0.5
+            ]
+        },
+        "noteheadRectangularClusterWhiteTop": {
+            "stemDownNW": [
+                0,
+                -0.8
+            ],
+            "stemUpSE": [
+                1.2,
+                0.5
+            ]
+        },
+        "noteheadRectangularClusterWhiteBottom": {
+            "stemDownNW": [
+                0,
+                -0.5
+            ],
+            "stemUpSE": [
+                1.2,
+                0.5
+            ]
+        },
+        "mensuralNoteheadMinimaWhite": {
+            "stemDownNW": [
+                0,
+                0
+            ],
+            "stemUpSE": [
+                1.504,
+                0
+            ]
+        },
+        "wiggleTrill": {
+            "repeatOffset": [
+                1,
+                0
+            ]
+        },
+        "wiggleGlissando": {
+            "repeatOffset": [
+                1.004,
+                0
+            ]
+        },
+        "wiggleWavyNarrow": {
+            "repeatOffset": [
+                1.6,
+                0
+            ]
+        },
+        "wiggleWavy": {
+            "repeatOffset": [
+                2.4,
+                0
+            ]
+        },
+        "wiggleWavyWide": {
+            "repeatOffset": [
+                3.2,
+                0
+            ]
+        },
+        "wiggleSquareWaveNarrow": {
+            "repeatOffset": [
+                2,
+                0
+            ]
+        },
+        "wiggleSquareWave": {
+            "repeatOffset": [
+                3.008,
+                0
+            ]
+        },
+        "wiggleSquareWaveWide": {
+            "repeatOffset": [
+                4,
+                0
+            ]
+        },
+        "wiggleSawtoothNarrow": {
+            "repeatOffset": [
+                1.6,
+                0
+            ]
+        },
+        "wiggleSawtooth": {
+            "repeatOffset": [
+                2.4,
+                0
+            ]
+        },
+        "wiggleSawtoothWide": {
+            "repeatOffset": [
+                3.2,
+                0
+            ]
+        },
+        "wiggleRandom1": {
+            "repeatOffset": [
+                7.864,
+                0
+            ]
+        },
+        "wiggleRandom2": {
+            "repeatOffset": [
+                8,
+                0
+            ]
+        },
+        "wiggleRandom3": {
+            "repeatOffset": [
+                8,
+                0
+            ]
+        },
+        "wiggleRandom4": {
+            "repeatOffset": [
+                8,
+                0
+            ]
+        },
+        "wiggleArpeggiatoUp": {
+            "repeatOffset": [
+                1.004,
+                0
+            ]
+        },
+        "wiggleArpeggiatoDown": {
+            "repeatOffset": [
+                1.004,
+                0
+            ]
+        },
+        "wiggleArpeggiatoUpArrow": {
+            "repeatOffset": [
+                1.856,
+                0
+            ]
+        },
+        "wiggleArpeggiatoDownArrow": {
+            "repeatOffset": [
+                1.84,
+                0
+            ]
+        },
+        "accidentalFlat":{
+			"cutOutNE":[
+				0.096,
+				0.604
+			],
+			"cutOutSE":[
+				0.612,
+				-0.176
+			]
+		},
+        "accidentalNatural":{
+			"cutOutNE":[
+				0.088,
+				0.848
+			],
+			"cutOutSW":[
+				0.492,
+				-0.848
+			]
+		},
+        "accidentalSharp":{
+			"cutOutNE":[
+				0.744,
+				0.972
+			],
+			"cutOutNW":[
+				0.228,
+				0.64
+			],
+			"cutOutSE":[
+				0.744,
+				-0.64
+			],
+			"cutOutSW":[
+				0.228,
+				-0.852
+			]
+		},
+        "accidentalDoubleFlat":{
+			"cutOutNE":[
+				0.82,
+				0.604
+			],
+			"cutOutSE":[
+				1.336,
+				-0.176
+			]
+		}
+    },
+    "glyphsWithAlternates":{
+        "brace":{
+            "alternates":[
+                {
+                    "codepoint":"U+F400",
+                    "name":"braceSmall"
+                },
+                {
+                    "codepoint":"U+F401",
+                    "name":"braceLarge"
+                },
+                {
+                    "codepoint":"U+F402",
+                    "name":"braceLarger"
+                },
+                {
+                    "codepoint":"U+F403",
+                    "name":"braceFlat"
+                }
+            ]
+        },
+        "segno":{
+			"alternates":[
+				{
+					"codepoint":"U+F404",
+					"name":"segnoJapanese"
+				}
+			]
+		},
+        "coda":{
+			"alternates":[
+				{
+					"codepoint":"U+F405",
+					"name":"codaJapanese"
+				}
+			]
+		},
+        "ornamentTrill":{
+			"alternates":[
+				{
+					"codepoint":"U+F407",
+					"name":"ornamentTrillAlternative"
+				}
+			]
+		},
+        "noteheadDoubleWhole":{
+			"alternates":[
+				{
+					"codepoint":"U+F43F",
+					"name":"noteheadDoubleWholeAlt"
+				}
+			]
+		},
+        "csymAccidentalFlat":{
+			"alternates":[
+				{
+					"codepoint":"U+F4DC",
+					"name":"csymAccidentalFlatSmall"
+				}
+			]
+		},
+		"csymAccidentalNatural":{
+			"alternates":[
+				{
+					"codepoint":"U+F4DD",
+					"name":"csymAccidentalNaturalSmall"
+				}
+			]
+		},
+		"csymAccidentalSharp":{
+			"alternates":[
+				{
+					"codepoint":"U+F4DE",
+					"name":"csymAccidentalSharpSmall"
+				}
+			]
+		},
+        "csymAccidentalDoubleFlat":{
+			"alternates":[
+				{
+					"codepoint":"U+F4E0",
+					"name":"csymAccidentalDoubleFlatSmall"
+				}
+			]
+		},
+		"csymAccidentalDoubleSharp":{
+			"alternates":[
+				{
+					"codepoint":"U+F4DF",
+					"name":"csymAccidentalDoubleSharpSmall"
+				}
+			]
+		},
+		"csymAccidentalTripleFlat":{
+			"alternates":[
+				{
+					"codepoint":"U+F4E2",
+					"name":"csymAccidentalTripleFlatSmall"
+				}
+			]
+		},
+		"csymAccidentalTripleSharp":{
+			"alternates":[
+				{
+					"codepoint":"U+F4E1",
+					"name":"csymAccidentalTripleSharpSmall"
+				}
+			]
+		}
+    },
+    "optionalGlyphs": {
+        "braceSmall":{
+			"classes":[],
+			"codepoint":"U+F400",
+			"description":"Brace (small)"
+		},
+		"braceLarge":{
+			"classes":[],
+			"codepoint":"U+F401",
+			"description":"Brace (large)"
+		},
+		"braceLarger":{
+			"classes":[],
+			"codepoint":"U+F402",
+			"description":"Brace (larger)"
+		},
+        "braceFlat":{
+			"classes":[],
+			"codepoint":"U+F403",
+			"description":"Brace (flat)"
+		},
+        "segnoJapanese":{
+			"classes":[],
+			"codepoint":"U+F404",
+			"description":"Segno (Japanese style, rotated)"
+		},
+        "codaJapanese":{
+			"classes":[],
+			"codepoint":"U+F405",
+			"description":"Coda (Japanese style, serif)"
+		},
+        "ornamentTrillAlternative":{
+			"classes":[],
+			"codepoint":"U+F407",
+			"description":"Trill (Alternative)"
+		},
+        "noteheadDoubleWholeAlt":{
+			"classes":[
+				"combiningStaffPositions",
+				"noteheads",
+				"noteheadSetDefault"
+			],
+			"codepoint":"U+F43F",
+			"description":"Double whole note (breve), single vertical strokes"
+		},
+        "accidentalFlatParens":{
+            "classes":[],
+			"codepoint":"U+F5D5"
+		},
+        "accidentalNaturalParens":{
+            "classes":[],
+			"codepoint":"U+F5D6"
+		},
+        "accidentalSharpParens":{
+            "classes":[],
+			"codepoint":"U+F5D7"
+		},
+        "accidentalDoubleSharpParens":{
+            "classes":[],
+			"codepoint":"U+F5D8"
+		},
+        "accidentalDoubleFlatParens":{
+            "classes":[],
+			"codepoint":"U+F5D9"
+		},
+        "U+F700": {
+            "classes": [], 
+            "codepoint": "U+F700",
+            "description":"Arpegiato, vertical (for compatibility)"
+        },
+        "accidentalDoubleSharpSmall": {
+            "classes": [], 
+            "codepoint": "U+F710"
+        },
+        "accidentalSharpSmall": {
+            "classes": [], 
+            "codepoint": "U+F711"
+        },
+        "accidentalNaturalSmall": {
+            "classes": [], 
+            "codepoint": "U+F712"
+        },
+        "accidentalFlatSmall": {
+            "classes": [], 
+            "codepoint": "U+F713"
+        },
+        "accidentalDoubleFlatSmall": {
+            "classes": [], 
+            "codepoint": "U+F714"
+        },
+        "accidentalFlatSmallParens":{
+            "classes":[],
+			"codepoint":"U+F715"
+		},
+        "accidentalNaturalSmallParens":{
+            "classes":[],
+			"codepoint":"U+F716"
+		},
+        "accidentalSharpSmallParens":{
+            "classes":[],
+			"codepoint":"U+F717"
+		},
+        "accidentalDoubleSharpSmallParens":{
+            "classes":[],
+			"codepoint":"U+F718"
+		},
+        "accidentalDoubleFlatSmallParens":{
+            "classes":[],
+			"codepoint":"U+F719"
+		},
+        "noteheadDiamondX":{
+            "classes":[],
+			"codepoint":"U+F410"
+		},
+        "csymAccidentalDoubleFlatSmall":{
+			"classes":[],
+			"codepoint":"U+F4E0",
+			"description":"Double flat (superscript or subscript)"
+		},
+		"csymAccidentalDoubleSharpSmall":{
+			"classes":[],
+			"codepoint":"U+F4DF",
+			"description":"Double sharp (superscript or subscript)"
+		},
+		"csymAccidentalFlatSmall":{
+			"classes":[],
+			"codepoint":"U+F4DC",
+			"description":"Flat (superscript or subscript)"
+		},
+		"csymAccidentalNaturalSmall":{
+			"classes":[],
+			"codepoint":"U+F4DD",
+			"description":"Natural (superscript or subscript)"
+		},
+		"csymAccidentalSharpSmall":{
+			"classes":[],
+			"codepoint":"U+F4DE",
+			"description":"Sharp (superscript or subscript)"
+		},
+		"csymAccidentalTripleFlatSmall":{
+			"classes":[],
+			"codepoint":"U+F4E2",
+			"description":"Triple flat (superscript or subscript)"
+		},
+		"csymAccidentalTripleSharpSmall":{
+			"classes":[],
+			"codepoint":"U+F4E1",
+			"description":"Triple sharp (superscript or subscript)"
+		}
+    },
+    "ligatures": {
+        "accidentalFlatParens":{
+			"codepoint":"U+F5D5",
+			"componentGlyphs":[
+				"accidentalParensLeft",
+				"accidentalFlat",
+				"accidentalParensRight"
+			],
+			"description":"Parenthesised flat"
+		},
+        "accidentalNaturalParens":{
+			"codepoint":"U+F5D6",
+			"componentGlyphs":[
+				"accidentalParensLeft",
+				"accidentalNatural",
+				"accidentalParensRight"
+			],
+			"description":"Parenthesised natural"
+		},
+        "accidentalSharpParens":{
+			"codepoint":"U+F5D7",
+			"componentGlyphs":[
+				"accidentalParensLeft",
+				"accidentalSharp",
+				"accidentalParensRight"
+			],
+			"description":"Parenthesised sharp"
+		},
+		"accidentalDoubleSharpParens":{
+			"codepoint":"U+F5D8",
+			"componentGlyphs":[
+				"accidentalParensLeft",
+				"accidentalDoubleSharp",
+				"accidentalParensRight"
+			],
+			"description":"Parenthesised double sharp"
+		},
+        "accidentalDoubleFlatParens":{
+			"codepoint":"U+F5D9",
+			"componentGlyphs":[
+				"accidentalParensLeft",
+				"accidentalDoubleFlat",
+				"accidentalParensRight"
+			],
+			"description":"Parenthesised double flat"
+		}
+    },
+    "sets": {
+        "ss07":{
+			"description":"Smaller optical size for subscript and superscript placement",
+			"glyphs":[
+				{
+					"alternateFor":"csymHalfDiminished",
+					"codepoint":"U+F4D7",
+					"description":"Half-diminished (subscript or superscript)",
+					"name":"csymHalfDiminishedSmall"
+				},
+				{
+					"alternateFor":"csymDiminished",
+					"codepoint":"U+F4D8",
+					"description":"Diminished (subscript or superscript)",
+					"name":"csymDiminishedSmall"
+				},
+				{
+					"alternateFor":"csymAugmented",
+					"codepoint":"U+F4D9",
+					"description":"Augmented (subscript or superscript)",
+					"name":"csymAugmentedSmall"
+				},
+				{
+					"alternateFor":"csymMajorSeventh",
+					"codepoint":"U+F4DA",
+					"description":"Major seventh (subscript or superscript)",
+					"name":"csymMajorSeventhSmall"
+				},
+				{
+					"alternateFor":"csymMinor",
+					"codepoint":"U+F4DB",
+					"description":"Minor (subscript or superscript)",
+					"name":"csymMinorSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalFlat",
+					"codepoint":"U+F4DC",
+					"description":"Flat (superscript or subscript)",
+					"name":"csymAccidentalFlatSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalNatural",
+					"codepoint":"U+F4DD",
+					"description":"Natural (superscript or subscript)",
+					"name":"csymAccidentalNaturalSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalSharp",
+					"codepoint":"U+F4DE",
+					"description":"Sharp (superscript or subscript)",
+					"name":"csymAccidentalSharpSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalDoubleSharp",
+					"codepoint":"U+F4DF",
+					"description":"Double sharp (superscript or subscript)",
+					"name":"csymAccidentalDoubleSharpSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalDoubleFlat",
+					"codepoint":"U+F4E0",
+					"description":"Double flat (superscript or subscript)",
+					"name":"csymAccidentalDoubleFlatSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalTripleSharp",
+					"codepoint":"U+F4E1",
+					"description":"Triple sharp (superscript or subscript)",
+					"name":"csymAccidentalTripleSharpSmall"
+				},
+				{
+					"alternateFor":"csymAccidentalTripleFlat",
+					"codepoint":"U+F4E2",
+					"description":"Triple flat (superscript or subscript)",
+					"name":"csymAccidentalTripleFlatSmall"
+				}
+			],
+			"type":"chordSymbolsOpticalVariants"
+		}
+    }
+}
