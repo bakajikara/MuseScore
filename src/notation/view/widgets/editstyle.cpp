@@ -2316,6 +2316,7 @@ void EditStyle::setValues()
     musicalTextFont->addItem("Petaluma Text", "Petaluma Text");
     musicalTextFont->addItem("Finale Maestro Text", "Finale Maestro Text");
     musicalTextFont->addItem("Finale Broadway Text", "Finale Broadway Text");
+    musicalTextFont->addItem("Chaconne Ex Text", "Chaconne Ex Text");
     QString tfont(styleValue(StyleId::musicalTextFont).value<String>());
     idx = musicalTextFont->findData(tfont);
     musicalTextFont->setCurrentIndex(idx);

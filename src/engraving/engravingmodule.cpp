@@ -211,6 +211,19 @@ void EngravingModule::onInit(const IApplication::RunMode& mode)
         addMusicFont("Finale Broadway", FontDataKey(u"Finale Broadway"), ":/fonts/finalebroadway/FinaleBroadway.otf");
         fdb->addFont(FontDataKey(u"Finale Broadway Text"), ":/fonts/finalebroadway/FinaleBroadwayText.otf");
 
+        String fontDirectory;
+#if defined(Q_OS_WIN)
+        fontDirectory = String::fromStdString(std::getenv("windir")) + u"/Fonts";
+#elif defined(Q_OS_MAC)
+        fontDirectory = String("/System/Library/Fonts");
+#elif defined(Q_OS_LINUX)
+        fontDirectory = String("/usr/share/fonts");
+#endif
+        String musicFontPath = String("%1/Chaconne Ex.otf").arg(fontDirectory);
+        addMusicFont("Chaconne Ex", FontDataKey(u"Chaconne Ex"), musicFontPath);
+        String textFontPath = String("%1/Chaconne Ex Text.otf").arg(fontDirectory);
+        fdb->addFont(FontDataKey(u"Chaconne Ex Text"), textFontPath);
+
         // Tabulature
         fdb->addFont(FontDataKey(u"FreeSerif"), ":/fonts/FreeSerif.ttf");
         fdb->addFont(FontDataKey(u"FreeSerif", true, false), ":/fonts/FreeSerifBold.ttf");
@@ -242,6 +255,7 @@ void EngravingModule::onInit(const IApplication::RunMode& mode)
         fdb->insertSubstitution(u"Petaluma Text",  u"MuseJazz Text");
         fdb->insertSubstitution(u"Finale Maestro Text", u"Leland Text");
         fdb->insertSubstitution(u"Finale Broadway Text", u"MuseJazz Text");
+        fdb->insertSubstitution(u"Chaconne Ex Text", u"Leland Text");
         fdb->insertSubstitution(u"ScoreFont",      u"Leland Text");// alias for current Musical Text Font
 
         // Symbols

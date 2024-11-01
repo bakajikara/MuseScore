@@ -116,7 +116,19 @@ void EngravingFont::ensureLoad()
         computeMetrics(sym, code);
     }
 
-    File metadataFile(FileInfo(m_fontPath).path() + u"/metadata.json");
+    String metadataPath;
+    if (m_family == "Chaconne Ex") {
+#if defined(Q_OS_WIN)
+        metadataPath = String::fromStdString(std::getenv("commonprogramfiles")) + u"/SMuFL/Fonts/Chaconne Ex/Chaconne Ex.json";
+#elif defined(Q_OS_MAC)
+        metadataPath = String("/Library/Application Support/SMuFL/Fonts//Chaconne Ex/Chaconne Ex.json");
+#elif defined(Q_OS_LINUX)
+        metadataPath = String("/usr/share/SMuFL/Fonts/Chaconne Ex/Chaconne Ex.json");
+#endif
+    } else {
+        metadataPath = FileInfo(m_fontPath).path() + u"/metadata.json";
+    }
+    File metadataFile(metadataPath);
     if (!metadataFile.open(IODevice::ReadOnly)) {
         LOGE() << "Failed to open glyph metadata file: " << metadataFile.filePath();
         return;
@@ -491,6 +503,17 @@ void EngravingFont::loadEngravingDefaults(const JsonObject& engravingDefaultsObj
             bool value = engravingDefaultsObject.value(key).toDouble() > 0.75;
             m_engravingDefaults.insert({ Sid::useWideBeams, value });
             continue;
+        }
+
+        if (m_family == "Chaconne Ex") {
+            if (key == "slurEndpointThickness" || key == "slurMidpointThickness" || key == "tieEndpointThickness" || key == "tieMidpointThickness") {
+                applyEngravingDefault(key, engravingDefaultsObject.value(key).toDouble() / 2);
+                continue;
+            }
+            if (key == "barlineSeparation") {
+                applyEngravingDefault(key, engravingDefaultsObject.value(key).toDouble() - engravingDefaultsObject.value("thinBarlineThickness").toDouble());
+                continue;
+            }
         }
 
         applyEngravingDefault(key, engravingDefaultsObject.value(key).toDouble());
