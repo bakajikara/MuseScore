@@ -1270,7 +1270,7 @@ const UiActionList NotationUiActions::m_actions = {
              TranslatableString("action", "Add text: staff text")
              ),
     UiAction("dynamics",
-             mu::context::UiCtxProjectOpened,
+             mu::context::UiCtxNotationOpened,
              mu::context::CTX_ANY,
              TranslatableString("action", "&Dynamic"),
              TranslatableString("action", "Add text: dynamic")
