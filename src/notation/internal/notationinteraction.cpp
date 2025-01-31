@@ -4538,6 +4538,7 @@ Ret NotationInteraction::canAddTextToItem(TextStyleType type, const EngravingIte
     static const std::set<TextStyleType> needSelectNoteOrRestTypes {
         TextStyleType::SYSTEM,
         TextStyleType::STAFF,
+        TextStyleType::DYNAMICS,
         TextStyleType::EXPRESSION,
         TextStyleType::REHEARSAL_MARK,
         TextStyleType::INSTRUMENT_CHANGE,
@@ -4600,11 +4601,19 @@ void NotationInteraction::addText(TextStyleType type, EngravingItem* item)
         }
     }
 
+    if (text->hasVoiceAssignmentProperties()) {
+        text->setInitialTrackAndVoiceAssignment(item->track(), false);
+    }
+
     apply();
     showItem(text);
 
     if (!text->isInstrumentChange()) {
         startEditText(text);
+    }
+
+    if (text->isRehearsalMark() || text->isTempoText()) {
+        text->cursor()->selectWord();
     }
 }
 
@@ -6336,7 +6345,16 @@ void NotationInteraction::setGetViewRectFunc(const std::function<RectF()>& func)
 namespace mu::notation {
 EngravingItem* contextItem(INotationInteractionPtr interaction)
 {
-    EngravingItem* item = interaction->selection()->element();
+    EngravingItem* item = nullptr;
+    const INotationSelectionPtr sel = interaction->selection();
+
+    if (sel->isRange()) {
+        const INotationSelectionRangePtr range = sel->range();
+        item = range->rangeStartSegment()->firstElementForNavigation(range->startStaffIndex());
+    } else {
+        item = sel->element();
+    }
+
     if (item == nullptr) {
         return interaction->hitElementContext().element;
     }

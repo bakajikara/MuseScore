@@ -1269,6 +1269,12 @@ const UiActionList NotationUiActions::m_actions = {
              TranslatableString("action", "St&aff text"),
              TranslatableString("action", "Add text: staff text")
              ),
+    UiAction("dynamics",
+             mu::context::UiCtxProjectOpened,
+             mu::context::CTX_ANY,
+             TranslatableString("action", "&Dynamic"),
+             TranslatableString("action", "Add text: dynamic")
+             ),
     UiAction("expression-text",
              mu::context::UiCtxNotationOpened,
              mu::context::CTX_ANY,
@@ -1302,7 +1308,7 @@ const UiActionList NotationUiActions::m_actions = {
     UiAction("chord-text",
              mu::context::UiCtxNotationOpened,
              mu::context::CTX_ANY,
-             TranslatableString("action", "Chor&d symbol"),
+             TranslatableString("action", "C&hord symbol"),
              TranslatableString("action", "Add text: chord symbol")
              ),
     UiAction("roman-numeral-text",
