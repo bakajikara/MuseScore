@@ -560,13 +560,6 @@ void populateRhythmicList(std::vector<TDuration>* dList, const Fraction& l, bool
     if (startLevel == endLevel && strongestLevelCrossed == startLevel - 1) {
         needToSplit = false;
     }
-    // nor for the next simplest case of level 2 syncopation (allow sixteenth-note, eighth, eighth... to cross unstressed beats)
-    if (startLevel == endLevel && strongestLevelCrossed == startLevel - 2) {
-        // but disallow sixteenth-note, quarter, quarter...
-        int ticksToNext = nominal.ticksToNextSubbeat(rtickStart.ticks(), startLevel - 1);
-        int ticksPastPrev = nominal.ticksPastSubbeat(rtickStart.ticks(), startLevel - 1);
-        needToSplit = ticksToNext != ticksPastPrev;
-    }
 
     if (!needToSplit && strongestLevelCrossed == 0) {
         // NOW CHECK AT DENOMINATOR UNIT LEVEL AND BEAT LEVEL
