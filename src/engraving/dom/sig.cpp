@@ -79,7 +79,7 @@ BeatType TimeSigFrac::rtick2beatType(int rtick) const
     } else if (isDuple()) {
         stressBeat = 2;
     } else {
-        stressBeat = (numerator() + 1) / 2;     // Assumes 5/4 timeSig = (3+2)/4. (The same assumption is used for beaming)
+        stressBeat = (numerator() - 1) / 2;     // Assumes 5/4 timeSig = (3+2)/4. (The same assumption is used for beaming)
     }
     if (stressBeat && beatNum % stressBeat == 0) {
         return isCompound() ? BeatType::COMPOUND_STRESSED : BeatType::SIMPLE_STRESSED;
