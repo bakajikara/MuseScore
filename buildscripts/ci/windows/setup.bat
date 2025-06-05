@@ -44,6 +44,23 @@ SET PATH=%JACK_DIR%;%PATH%
 CALL "curl.exe" -f -o %TEMP_DIR%\dependencies.7z "https://s3.amazonaws.com/utils.musescore.org/dependencies.7z"
 CALL "7z" x -y %TEMP_DIR%\dependencies.7z "-oC:\musescore_dependencies"
 
+:: === Install FFmpeg (dev build) ===
+ECHO "=== Downloading FFmpeg (dev build) ==="
+SET FFMPEG_URL=https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-full-shared.7z
+SET FFMPEG_ARCHIVE=%TEMP_DIR%\ffmpeg-release-full-shared.7z
+
+CALL "wget.exe" -q --show-progress --no-check-certificate "%FFMPEG_URL%" -O "%FFMPEG_ARCHIVE%"
+CALL "7z" x -y "%FFMPEG_ARCHIVE%" -o"%TEMP_DIR%\"
+
+:: === Normalize FFmpeg directory ===
+ECHO "=== Organizing FFmpeg directory ==="
+SET FFMPEG_TARGET_DIR=C:\ffmpeg
+IF EXIST "%FFMPEG_TARGET_DIR%" RMDIR /S /Q "%FFMPEG_TARGET_DIR%"
+
+FOR /D %%D IN ("%TEMP_DIR%\ffmpeg-*") DO (
+    XCOPY "%%D" "%FFMPEG_TARGET_DIR%\" /E /I /Y
+)
+
 IF %BUILD_WIN_PORTABLE% == ON (
 ECHO "=== Installing PortableApps.com Tools ==="
 :: portableappslauncher is a vanilla installation of PortableApps.com Launcher https://portableapps.com/apps/development/portableapps.com_launcher
