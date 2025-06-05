@@ -45,8 +45,8 @@ IF %TARGET_PROCESSOR_BITS% == 32 (
 IF %BUILD_WIN_PORTABLE% == ON    ( SET PACKAGE_TYPE="portable") ELSE (
 IF %BUILD_MODE% == devel   ( SET PACKAGE_TYPE="7z") ELSE (
 IF %BUILD_MODE% == nightly ( SET PACKAGE_TYPE="7z") ELSE (
-IF %BUILD_MODE% == testing ( SET PACKAGE_TYPE="msi") ELSE (    
-IF %BUILD_MODE% == stable  ( SET PACKAGE_TYPE="msi") ELSE ( 
+IF %BUILD_MODE% == testing ( SET PACKAGE_TYPE="7z") ELSE (
+IF %BUILD_MODE% == stable  ( SET PACKAGE_TYPE="7z") ELSE (
     ECHO "Unknown BUILD_MODE: %BUILD_MODE%"
     GOTO END_ERROR
 )))))
