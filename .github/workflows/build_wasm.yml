@@ -70,6 +70,10 @@ jobs:
           arch: 'wasm_singlethread'
           modules: 'qt5compat qtscxml qtshadertools qtwebsockets'
 
+      - name: Setup environment
+        run: |
+          bash ./buildscripts/ci/backend/setup.sh
+
       - name: Configure CMake
         run: |
           ls ../Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6
