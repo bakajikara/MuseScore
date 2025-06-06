@@ -80,6 +80,7 @@ jobs:
             -DMUSE_APP_BUILD_MODE=release \
             -DCMAKE_PREFIX_PATH=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread \
             -DQt6_DIR=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6 \
+            -DQt6Core_DIR=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6Core \
             -DQT_DEBUG_FIND_PACKAGE=ON
         env:
           EMSDK: ${{ env.EMSDK }}
