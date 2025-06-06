@@ -1,0 +1,134 @@
+name: "Build: WASM"
+run-name: "Build: WASM - ${{ inputs.build_mode }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_mode:
+        description: 'Build mode: devel, nightly, testing, stable'
+        default: 'devel'
+        required: true
+      publish:
+        description: 'Publish to FTP: on - publish'
+        default: 'off'
+        required: false
+      sentry_project:
+        description: 'Upload symbols and dumps to Sentry (choose a project): mu4(default for stable build), sandbox'
+        default: ''
+        required: false
+      use_qt69:
+        description: 'Use Qt 6.9'
+        default: 'on'
+        required: false
+  workflow_call:
+    inputs:
+      build_mode:
+        description: 'Build mode: devel,nightly,testing,stable'
+        default: 'devel'
+        type: string
+        required: true
+      publish:
+        description: 'Publish to FTP: on - publish'
+        default: 'off'
+        type: string
+        required: false
+      sentry_project:
+        description: 'Upload symbols and dumps to Sentry (choose a project): mu4(default for stable build), sandbox'
+        default: ''
+        type: string
+        required: false
+      use_qt69:
+        description: 'Use Qt 6.9'
+        default: 'on'
+        type: string
+        required: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build_wasm:
+    name: Build WASM
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: '4.0.9' # Specify a recent Emscripten version
+          actions-cache-folder: 'emsdk-cache'
+
+      - name: Install Qt
+        uses: jdpurcell/install-qt-action@v5 
+        with:
+          version: ${{ inputs.use_qt69 == 'on' && '6.9.1' || '6.2.4' }}
+          host: 'all_os'
+          target: 'wasm'
+          arch: 'wasm_singlethread'
+          modules: 'qt5compat qtscxml qtshadertools qtwebsockets'
+
+      - name: Configure CMake
+        run: |
+          ls ../Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6
+          emcmake cmake -B build-wasm -S . \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_TOOLCHAIN_FILE=${EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake \
+            -DMUSESCORE_BUILD_CONFIGURATION=app-web \
+            -DMUSE_APP_BUILD_MODE=release \
+            -DCMAKE_PREFIX_PATH=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6
+        env:
+          EMSDK: ${{ env.EMSDK }}
+
+      - name: Build WASM
+        run: cmake --build build-wasm --parallel
+
+      - name: Prepare artifact
+        run: |
+          ARTIFACTS_DIR="build.artifacts"
+          mkdir -p "${ARTIFACTS_DIR}/wasm"
+          cp build-wasm/bin/appweb_sandbox.wasm "${ARTIFACTS_DIR}/wasm/"
+          cp build-wasm/bin/appweb_sandbox.js "${ARTIFACTS_DIR}/wasm/"
+          # Add any other necessary files (e.g., html, data files)
+          # cp sandbox/web_sandbox/viewer/viewer.html "${ARTIFACTS_DIR}/wasm/"
+          # cp sandbox/web_sandbox/viewer/qtloader.js "${ARTIFACTS_DIR}/wasm/"
+
+          echo "ARTIFACTS_DIR=${ARTIFACTS_DIR}" | tee -a "${GITHUB_ENV}"
+
+          buildscripts/ci/tools/make_build_mode_env.sh -e "${{ github.event_name }}" -m "${{ inputs.build_mode }}"
+          BUILD_MODE="$(<"${ARTIFACTS_DIR}/env/build_mode.env")"
+
+          case "${BUILD_MODE}" in
+          testing)  MUSE_APP_BUILD_MODE=testing;;
+          stable)   MUSE_APP_BUILD_MODE=release;;
+          *)        MUSE_APP_BUILD_MODE=dev;;
+          esac
+
+          buildscripts/ci/tools/make_build_number.sh
+          BUILD_NUMBER="$(<"${ARTIFACTS_DIR}/env/build_number.env")"
+
+          buildscripts/ci/tools/make_version_env.sh "${BUILD_NUMBER}"
+          BUILD_VERSION="$(<"${ARTIFACTS_DIR}/env/build_version.env")"
+
+          buildscripts/ci/tools/make_branch_env.sh
+          BUILD_BRANCH="$(<"${ARTIFACTS_DIR}/env/build_branch.env")"
+
+          buildscripts/ci/tools/make_artifact_name_env.sh "MuseScore-WASM-${BUILD_VERSION}-${{ runner.os }}-${HOSTTYPE}.zip"
+          ARTIFACT_NAME="$(<"${ARTIFACTS_DIR}/env/artifact_name.env")"
+          echo "ARTIFACT_NAME=${ARTIFACT_NAME}" | tee -a "${GITHUB_ENV}"
+
+          cd "${ARTIFACTS_DIR}"
+          zip -r "${ARTIFACT_NAME}" wasm
+          # buildscripts/ci/tools/checksum.sh # This might need adjustment for zip files
+
+          UPLOAD_ARTIFACT_NAME="$(tr '":<>|*?/\’' '_' <<<"MU4_${BUILD_NUMBER}_WASM_${{ runner.os }}_${BUILD_BRANCH}")"
+          echo "UPLOAD_ARTIFACT_NAME=${UPLOAD_ARTIFACT_NAME}" | tee -a "${GITHUB_ENV}"
+
+
+      - name: Upload artifacts to GitHub
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.UPLOAD_ARTIFACT_NAME }}
+          path: ${{ env.ARTIFACTS_DIR }}/${{ env.ARTIFACT_NAME }}
