@@ -78,8 +78,9 @@ jobs:
             -DCMAKE_TOOLCHAIN_FILE=${EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake \
             -DMUSESCORE_BUILD_CONFIGURATION=app-web \
             -DMUSE_APP_BUILD_MODE=release \
-            -DCMAKE_PREFIX_PATH=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread/lib/cmake \
-            -DQt6_DIR=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6
+            -DCMAKE_PREFIX_PATH=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread \
+            -DQt6_DIR=/home/runner/work/MuseScore/Qt/6.9.1/wasm_singlethread/lib/cmake/Qt6 \
+            -DQT_DEBUG_FIND_PACKAGE=ON
         env:
           EMSDK: ${{ env.EMSDK }}
 
