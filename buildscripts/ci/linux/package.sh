@@ -47,11 +47,11 @@ if [ -z "$BUILD_VERSION" ]; then BUILD_VERSION=$(cat $ARTIFACTS_DIR/env/build_ve
 if [ -z "$BUILD_MODE" ]; then echo "error: not set BUILD_MODE"; exit 1; fi
 if [ -z "$BUILD_VERSION" ]; then echo "error: not set BUILD_VERSION"; exit 1; fi
 
-PACKTYPE=appimage
-if [ "$BUILD_MODE" == "devel" ]; then PACKTYPE=appimage; fi
-if [ "$BUILD_MODE" == "nightly" ]; then PACKTYPE=appimage; fi
-if [ "$BUILD_MODE" == "testing" ]; then PACKTYPE=appimage; fi
-if [ "$BUILD_MODE" == "stable" ]; then PACKTYPE=appimage; fi
+PACKTYPE=7z
+if [ "$BUILD_MODE" == "devel" ]; then PACKTYPE=7z; fi
+if [ "$BUILD_MODE" == "nightly" ]; then PACKTYPE=7z; fi
+if [ "$BUILD_MODE" == "testing" ]; then PACKTYPE=7z; fi
+if [ "$BUILD_MODE" == "stable" ]; then PACKTYPE=7z; fi
 
 MAJOR_VERSION="${BUILD_VERSION%%.*}"
 
