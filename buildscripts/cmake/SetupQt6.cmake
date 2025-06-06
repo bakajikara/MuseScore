@@ -91,7 +91,7 @@ if (OS_IS_WASM)
     set(QT_WASM_EXTRA_EXPORTED_METHODS ccall)
 endif()
 
-find_package(Qt6 6.2 REQUIRED COMPONENTS ${qt_components})
+find_package(Qt6 6.9 REQUIRED COMPONENTS ${qt_components})
 
 include(QtInstallPaths)
 
