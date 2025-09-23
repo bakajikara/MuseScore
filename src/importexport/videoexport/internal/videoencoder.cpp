@@ -126,7 +126,7 @@ bool VideoEncoder::open(const muse::io::path_t& fileName, unsigned width, unsign
         return false;
     }
 #endif
-    m_ffmpeg->codecCtx->profile = FF_PROFILE_H264_HIGH;
+    m_ffmpeg->codecCtx->profile = AV_PROFILE_H264_HIGH;
 
     m_ffmpeg->codecCtx->bit_rate = bitrate;
     m_ffmpeg->codecCtx->width = width;
