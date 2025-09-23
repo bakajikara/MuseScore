@@ -52,12 +52,6 @@ IF %BUILD_MODE% == stable  ( SET PACKAGE_TYPE="msi") ELSE (
 )))))
 
 SET DO_SIGN=OFF
-IF %PACKAGE_TYPE% == "msi" ( 
-    SET DO_SIGN=ON
-)
-IF %PACKAGE_TYPE% == "portable" ( 
-    SET DO_SIGN=ON
-)
 IF %DO_SIGN% == ON (
     IF %SIGN_KEY% == "" ( 
         SET DO_SIGN=OFF
