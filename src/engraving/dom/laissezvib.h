@@ -60,7 +60,6 @@ public:
     LaissezVib* clone() const override { return new LaissezVib(*this); }
 
     PropertyValue getProperty(Pid propertyId) const override;
-    PropertyValue propertyDefault(Pid propertyId) const override;
     bool setProperty(Pid propertyId, const PropertyValue& v) override;
 
     Spatium minLength() const { return m_minLength; }

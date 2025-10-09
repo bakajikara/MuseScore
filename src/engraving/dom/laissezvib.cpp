@@ -51,16 +51,6 @@ PropertyValue LaissezVib::getProperty(Pid propertyId) const
     }
 }
 
-PropertyValue LaissezVib::propertyDefault(Pid propertyId) const
-{
-    switch (propertyId) {
-    case Pid::MIN_LENGTH:
-        return Spatium(2.0);
-    default:
-        return Tie::propertyDefault(propertyId);
-    }
-}
-
 bool LaissezVib::setProperty(Pid propertyId, const PropertyValue& v)
 {
     switch (propertyId) {
