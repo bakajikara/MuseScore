@@ -108,7 +108,7 @@ Column {
         propertyItem: root.model ? root.model.minLength : null
 
         step: 0.1
-        maxValue: 10.00
+        maxValue: 99.99
         minValue: 1
         decimals: 2
 
