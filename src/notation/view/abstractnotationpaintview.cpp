@@ -86,6 +86,7 @@ void AbstractNotationPaintView::load()
     m_playbackCursor->setVisible(false);
     m_noteInputCursor = std::make_unique<NoteInputCursor>(configuration()->thinNoteInputCursor());
     m_ruler = std::make_unique<NotationRuler>(iocContext());
+    m_previewMeasure = std::make_unique<PreviewMeasure>(iocContext());
 
     m_loopInMarker = std::make_unique<LoopMarker>(LoopBoundaryType::LoopIn, iocContext());
     m_loopOutMarker = std::make_unique<LoopMarker>(LoopBoundaryType::LoopOut, iocContext());
@@ -376,6 +377,11 @@ void AbstractNotationPaintView::onMatrixChanged(const Transform& oldMatrix, cons
         m_shadowNoteRect = newMatrix.map(logicRect);
     }
 
+    if (m_previewMeasureRect.isValid()) {
+        RectF logicRect = oldMatrixInverted.map(m_previewMeasureRect);
+        m_previewMeasureRect = newMatrix.map(logicRect);
+    }
+
     scheduleRedraw();
 
     emit horizontalScrollChanged();
@@ -434,6 +440,7 @@ void AbstractNotationPaintView::updateShadowNoteVisibility()
     const engraving::ShadowNote* shadowNote = interaction ? interaction->shadowNote() : nullptr;
     if (!shadowNote || !shadowNote->visible()) {
         m_shadowNoteRect = RectF();
+        m_previewMeasureRect = RectF();
         return;
     }
 
@@ -445,6 +452,7 @@ void AbstractNotationPaintView::updateShadowNoteVisibility()
     } else {
         interaction->hideShadowNote();
         m_shadowNoteRect = RectF();
+        m_previewMeasureRect = RectF();
         return;
     }
 }
@@ -562,6 +570,31 @@ void AbstractNotationPaintView::showShadowNote(const PointF& pos)
     m_shadowNoteRect = shadowNoteRect;
 }
 
+void AbstractNotationPaintView::showPreviewMeasure(const PointF& pos)
+{
+    TRACEFUNC;
+
+    INotationInteractionPtr interaction = notationInteraction();
+    if (!interaction) {
+        return;
+    }
+
+    if (m_previewMeasureRect.isValid()) {
+        scheduleRedraw(m_previewMeasureRect);
+        m_previewMeasureRect = RectF();
+    }
+
+    RectF previewMeasureRect = fromLogical(m_previewMeasure->previewRect(notationNoteInput()->state(), pos));
+
+    if (previewMeasureRect.isValid()) {
+        compensateFloatPart(previewMeasureRect);
+        scheduleRedraw(previewMeasureRect);
+    }
+
+    m_previewMeasureRect = previewMeasureRect;
+}
+
+
 void AbstractNotationPaintView::showContextMenu(const ElementType& elementType, const QPointF& pos)
 {
     TRACEFUNC;
@@ -666,6 +699,9 @@ void AbstractNotationPaintView::paint(QPainter* qp)
 
     const INotationNoteInputPtr noteInput = notationNoteInput();
     if (noteInput->isNoteInputMode() && isOnNotationPage) {
+        if (m_previewMeasureRect.isValid() || noteInput->state().beyondScore()) {
+            m_previewMeasure->paint(painter, noteInput->state());
+        }
         if (noteInput->usingNoteInputMethod(NoteInputMethod::BY_DURATION)
             && !configuration()->useNoteInputCursorInInputByDuration()) {
             m_ruler->paint(painter, noteInput->state());
@@ -1364,6 +1400,7 @@ void AbstractNotationPaintView::clear()
     m_previousHorizontalScrollPosition = 0;
     m_previousVerticalScrollPosition = 0;
     m_shadowNoteRect = RectF();
+    m_previewMeasureRect = RectF();
     onMatrixChanged(oldMatrix, m_matrix, false);
 }
 

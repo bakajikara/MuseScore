@@ -1339,6 +1339,7 @@ void NotationViewInputController::hoverMoveEvent(QHoverEvent* event)
     }
 
     m_view->showShadowNote(pos);
+    m_view->showPreviewMeasure(pos);
 
     if (event->modifiers() == Qt::ShiftModifier) {
         updateShadowNotePopupVisibility();

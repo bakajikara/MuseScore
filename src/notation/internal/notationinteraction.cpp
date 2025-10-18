@@ -3478,7 +3478,12 @@ std::vector<NotationInteraction::ShadowNoteParams> NotationInteraction::previewN
 
         params.accidentalType = accidentalType(is, nval, line);
         params.position.line = line;
-        params.position.pos = PointF(segment->x(), y) + measurePos;
+
+        if (is.beyondScore()) {
+            params.position.pos = PointF(measure->ldata()->bbox().width() + score()->style().spatium(), y) + measurePos;
+        } else {
+            params.position.pos = PointF(segment->x(), y) + measurePos;
+        }
 
         result.push_back(params);
     }
@@ -5143,7 +5148,7 @@ Ret NotationInteraction::repeatSelection()
     const Selection& selection = score()->selection();
     if (score()->noteEntryMode() && selection.isSingle()) {
         EngravingItem* el = selection.element();
-        if (el && el->type() == ElementType::NOTE && !score()->inputState().endOfScore()) {
+        if (el && el->type() == ElementType::NOTE) {
             startEdit(TranslatableString("undoableAction", "Repeat selection"));
             Chord* c = toNote(el)->chord();
             for (Note* note : c->notes()) {
@@ -5172,14 +5177,17 @@ Ret NotationInteraction::repeatSelection()
     staff_idx_t dStaff = selection.staffStart();
     mu::engraving::Segment* endSegment = selection.endSegment();
 
+    startEdit(TranslatableString("undoableAction", "Repeat selection"));
     if (endSegment && endSegment->segmentType() != SegmentType::ChordRest) {
+        if (!endSegment->next1(SegmentType::ChordRest)) {
+            score()->appendMeasures(1);
+        }
         endSegment = endSegment->next1(SegmentType::ChordRest);
     }
     if (endSegment) {
         for (track_idx_t track = dStaff * VOICES; track < (dStaff + 1) * VOICES; ++track) {
             EngravingItem* e = endSegment->element(track);
             if (e) {
-                startEdit(TranslatableString("undoableAction", "Repeat selection"));
                 ChordRest* cr = toChordRest(e);
                 score()->pasteStaff(xml, cr->segment(), cr->staffIdx());
                 apply();
