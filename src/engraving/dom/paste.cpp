@@ -308,9 +308,6 @@ bool Score::cmdRepeatListSelection()
             // If the note doesn't belong to a chord we've seen before...
             foundChords.emplace(sourceChord);
             is.setSegment(sourceChord->segment());
-            if (inputState().endOfScore()) {
-                continue;
-            }
             is.moveToNextInputPos();
 
             if (is.noteEntryMode()) {
