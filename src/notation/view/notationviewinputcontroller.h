@@ -71,6 +71,7 @@ public:
 
     virtual bool isNoteEnterMode() const = 0;
     virtual void showShadowNote(const muse::PointF& pos) = 0;
+    virtual void showPreviewMeasure(const muse::PointF& pos) = 0;
 
     virtual void showContextMenu(const ElementType& elementType, const QPointF& pos) = 0;
     virtual void hideContextMenu() = 0;
