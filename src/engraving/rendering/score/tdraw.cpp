@@ -2482,7 +2482,9 @@ void TDraw::draw(const ShadowNote* item, Painter* painter, const PaintOptions&)
         int numLines = item->staffType() ? item->staffType()->lines() : 5;
         double lineDistance = item->staffType() ? item->staffType()->lineDistance().val() * sp2 : sp2;
         double noteheadWidth = item->symWidth(item->noteheadSymbol());
-        double extraLen = item->style().styleS(Sid::ledgerLineLength).val() * sp;
+        
+        // Extend staff lines further to make them more visible
+        double extraLen = sp * 2.0;  // Extend 2 spatiums on each side
         double x1 = -extraLen;
         double x2 = noteheadWidth + extraLen;
         
