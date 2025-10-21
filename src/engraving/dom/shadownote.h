@@ -80,6 +80,9 @@ public:
 
     bool ledgerLinesVisible() const;
 
+    bool drawStaffLines() const { return m_drawStaffLines; }
+    void setDrawStaffLines(bool draw) { m_drawStaffLines = draw; }
+
 private:
 
     Fraction m_tick;
@@ -92,5 +95,6 @@ private:
 
     double m_segmentSkylineTopY = 0.0;
     double m_segmentSkylineBottomY = 0.0;
+    bool m_drawStaffLines = false;
 };
 } // namespace mu::engraving

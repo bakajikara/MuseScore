@@ -1133,10 +1133,18 @@ Measure* Score::searchMeasure(const PointF& p, const System* preferredSystem, do
     std::vector<System*> systems = searchSystem(p, preferredSystem, spacingFactor, preferredSpacingFactor);
     for (System* system : systems) {
         double x = p.x() - system->canvasPos().x();
+        Measure* lastMeasure = nullptr;
         for (MeasureBase* mb : system->measures()) {
-            if (mb->isMeasure() && (x < (mb->x() + mb->ldata()->bbox().width()))) {
-                return toMeasure(mb);
+            if (mb->isMeasure()) {
+                if (x < (mb->x() + mb->ldata()->bbox().width())) {
+                    return toMeasure(mb);
+                }
+                lastMeasure = toMeasure(mb);
             }
+        }
+        // If cursor is beyond the last measure in the system, return the last measure
+        if (lastMeasure) {
+            return lastMeasure;
         }
     }
     return 0;
@@ -1289,6 +1297,11 @@ bool Score::getPosition(Position* pos, const PointF& p, voice_idx_t voice) const
         } else {
             x2    = measure->ldata()->bbox().width();
             d     = (x2 - x1) * 2.0;
+            // Allow positioning beyond the last segment
+            if (x >= x1) {
+                pos->segment = segment;
+                break;
+            }
             x     = x1;
             pos->segment = segment;
             break;

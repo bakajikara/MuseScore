@@ -455,6 +455,9 @@ bool NotationInteraction::showShadowNote(ShadowNote& shadowNote, ShadowNoteParam
     qreal relX = position.pos.x() - position.segment->measure()->canvasPos().x();
     position.pos.rx() -= qMin(relX - score()->style().styleMM(mu::engraving::Sid::barNoteDistance) * mag, 0.0);
 
+    // Check if we're beyond the last measure's right edge
+    bool isBeyondLastMeasure = relX > position.segment->measure()->ldata()->bbox().width();
+    
     mu::engraving::NoteHeadGroup noteheadGroup = mu::engraving::NoteHeadGroup::HEAD_NORMAL;
     mu::engraving::NoteHeadType noteHead = params.duration.headType();
 
@@ -493,6 +496,7 @@ bool NotationInteraction::showShadowNote(ShadowNote& shadowNote, ShadowNoteParam
     shadowNote.setStaffIdx(position.staffIdx);
     shadowNote.setVoice(voice);
     shadowNote.setLineIndex(line);
+    shadowNote.setDrawStaffLines(isBeyondLastMeasure);
 
     const Color color = configuration()->noteInputPreviewColor();
     if (color.isValid() && color != configuration()->selectionColor()) {

@@ -2471,6 +2471,33 @@ void TDraw::draw(const ShadowNote* item, Painter* painter, const PaintOptions&)
     Pen pen(item->color(), lw, PenStyle::SolidLine, PenCapStyle::FlatCap);
     painter->setPen(pen);
 
+    // Draw staff lines if needed (when beyond last measure)
+    if (item->drawStaffLines()) {
+        double sp = item->spatium();
+        double sp2 = sp / 2;
+        double staffLineWidth = item->style().styleMM(Sid::staffLineWidth) * item->mag();
+        Pen staffPen(item->color(), staffLineWidth, PenStyle::SolidLine, PenCapStyle::FlatCap);
+        painter->setPen(staffPen);
+        
+        int numLines = item->staffType() ? item->staffType()->lines() : 5;
+        double lineDistance = item->staffType() ? item->staffType()->lineDistance().val() * sp2 : sp2;
+        double noteheadWidth = item->symWidth(item->noteheadSymbol());
+        double extraLen = item->style().styleS(Sid::ledgerLineLength).val() * sp;
+        double x1 = -extraLen;
+        double x2 = noteheadWidth + extraLen;
+        
+        // Draw the staff lines
+        // Staff line 0 is at y=0 in staff coordinates, line 4 (bottom) is at y=4*lineDistance
+        // The note's lineIndex is relative to staff lines (0 = top line, 4 = bottom line for 5-line staff)
+        for (int i = 0; i < numLines; ++i) {
+            double y = (i - item->lineIndex()) * lineDistance;
+            painter->drawLine(LineF(x1, y, x2, y));
+        }
+        
+        // Restore pen for note drawing
+        painter->setPen(pen);
+    }
+
     bool up = item->computeUp();
 
     // Draw the accidental
