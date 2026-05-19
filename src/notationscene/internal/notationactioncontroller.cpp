@@ -1100,8 +1100,9 @@ void NotationActionController::move(MoveDirection direction, bool quickly)
         return;
     }
 
+    const NoteInputState& state = interaction->noteInput()->state();
     const bool previousSelectionExists = currentNotationScore() && currentNotationScore()->selection().currentCR();
-    if (interaction->selection()->isNone() && previousSelectionExists) {
+    if (interaction->selection()->isNone() && previousSelectionExists && !state.beyondScore()) {
         // Try to restore the previous selection...
         interaction->moveSelection(direction, MoveSelectionType::EngravingItem);
         seekAndPlaySelectedElement(true);
@@ -1130,7 +1131,7 @@ void NotationActionController::move(MoveDirection direction, bool quickly)
             }
             interaction->moveSelection(direction, MoveSelectionType::String);
             return;
-        } else if (interaction->selection()->isNone()) {
+        } else if (interaction->selection()->isNone() && !state.beyondScore()) {
             interaction->selectFirstElement(false);
         } else {
             interaction->movePitch(direction, quickly ? PitchMode::OCTAVE : PitchMode::CHROMATIC);
@@ -1181,7 +1182,7 @@ void NotationActionController::move(MoveDirection direction, bool quickly)
         } else if (selectedElement && selectedElement->hasGrips() && interaction->isGripEditStarted()) {
             interaction->nudgeAnchors(direction);
         } else {
-            if (interaction->selection()->isNone()) {
+            if (interaction->selection()->isNone() && !state.beyondScore()) {
                 interaction->selectFirstElement(false);
             }
             interaction->moveSelection(direction, quickly ? MoveSelectionType::Measure : MoveSelectionType::Chord);
